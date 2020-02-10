@@ -14,16 +14,16 @@
         <rss version='2.0'><channel>";
     
     while($r = mysqli_fetch_array($q)){
-        $name = $r['Name'];
-        $experience = $r['Experience'];
-        $position = $r['Position'];
+        $Name = $r['Name'];
+        $Experience = $r['Experience'];
+        $Position = $r['Position'];
        
 
 
-        echo "<pet>
-        <name>$name</name>
-        <experience>$experience</experience>
-        <position>$position</position>
+        echo "<player>
+        <name>$Name</name>
+        <experience>$Experience</experience>
+        <position>$Position</position>
         </basketball>";
     }
     echo "</channel></rss>";
