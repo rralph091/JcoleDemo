@@ -1,0 +1,30 @@
+<?php 
+    $conn = mysqli_connect("dbrojasdev.cjw42bnplsor.us-east-1.rds.amazonaws.com", "admin", "root1234") or die (mysqli_error($conn));
+    $db = mysqli_select_db($conn, "db_basketball");
+    if(mysqli_connect_errno($conn)){
+        echo "Database connection failed!: ". mysqli_connect_errno();
+    }
+
+    $sql = "SELECT * FROM BBall ORDER BY Experience DESC LIMIT 20";
+    $q = mysqli_query($conn, $sql);
+
+    header("Content-type: text/xml");
+
+    echo "<?xml version='1.0' encoding='UTF-8'?>
+        <rss version='2.0'><channel>";
+    
+    while($r = mysqli_fetch_array($q)){
+        $name = $r['Name'];
+        $experience = $r['Experience'];
+        $position = $r['Position'];
+       
+
+
+        echo "<pet>
+        <name>$name</name>
+        <experience>$experience</experience>
+        <position>$position</position>
+        </basketball>";
+    }
+    echo "</channel></rss>";
+?>
