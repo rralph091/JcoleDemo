@@ -6,7 +6,7 @@ CREATE TABLE `BBall` (
 	`Experience` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 	`Name` VARCHAR(40) NOT NULL DEFAULT '',
 	`Position` VARCHAR(40) NOT NULL DEFAULT '',
-	PRIMARY KEY (`pet_id`)
+	PRIMARY KEY (`Experience`)
 )
 COLLATE='latin1_swedish_ci'
 ENGINE=MyISAM
