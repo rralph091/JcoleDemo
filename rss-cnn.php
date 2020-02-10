@@ -18,7 +18,7 @@
 
 <?php
  $domOBJ = new DOMDocument();
- $domOBJ->load("https://new-rralph.herokuapp.com/");//XML page URL
+ $domOBJ->load(" https://new-rralph.herokuapp.com/");//XML page URL
  
  $content = $domOBJ->getElementsByTagName("player");
 ?>
