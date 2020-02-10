@@ -23,7 +23,7 @@
  $content = $domOBJ->getElementsByTagName("player");
 ?>
  <div class="content">
- <h1>Pets</h1>
+ <h1>Player</h1>
  </div>
  <div class="content">
 
