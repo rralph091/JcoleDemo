@@ -18,7 +18,7 @@
 
 <?php
  $domOBJ = new DOMDocument();
- $domOBJ->load("https://github.com/rralph091/JcoleDemo/blob/master/rss-cnn.php");//XML page URL
+ $domOBJ->load("https://new-rralph.herokuapp.com/");//XML page URL
  
  $content = $domOBJ->getElementsByTagName("player");
 ?>
