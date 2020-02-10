@@ -20,7 +20,7 @@
  $domOBJ = new DOMDocument();
  $domOBJ->load("https://new-apptet.herokuapp.com/rss.php");//XML page URL
  
- $content = $domOBJ->getElementsByTagName("pet");
+ $content = $domOBJ->getElementsByTagName("player");
 ?>
  <div class="content">
  <h1>Pets</h1>
