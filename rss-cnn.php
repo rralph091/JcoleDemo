@@ -33,12 +33,12 @@
  {?>
      <div class="border">
      <?php
-     $name = $data->getElementsByTagName("name")->item(0)->nodeValue;
-     $experience = $data->getElementsByTagName("experience")->item(0)->nodeValue;
-     $position = $data->getElementsByTagName("position")->item(0)->nodeValue;
-     echo "<ul><h2>$name - $experience</h2>
+     $Name = $data->getElementsByTagName("Name")->item(0)->nodeValue;
+     $Experience = $data->getElementsByTagName("Experience")->item(0)->nodeValue;
+     $Position = $data->getElementsByTagName("Position")->item(0)->nodeValue;
+     echo "<ul><h2>$Name - $Experience</h2>
               <ul>
-                  <li>Position: $position</li>
+                  <li>Position: $Position</li>
               </ul>
           </ul>";
     ?>
