@@ -1,95 +1,51 @@
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Programmer's Corner</title>
-        <style>
-        body {
-            font: 600 14px/24px "Open Sans", 
-               "HelveticaNeue-Light", 
-               "Helvetica Neue Light", 
-               "Helvetica Neue", 
-               Helvetica, Arial, 
-               "Lucida Grande", 
-               Sans-Serif;
-         }
-         h1 {
-            color: #9799a7;
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 4px;
-            margin-left: 10px;
-         }
-         .container:before, .container:after {
-            content: "";
-            display: table;
-         }
-         .container:after {
-            clear: both;
-         }
-         .container {
-            background: #eaeaed;
-            margin-bottom: 24px;
-            *zoom: 1;
-         }
-         .container-75 {
-            width: 75%;
-         }
-         .container-50 {
-            margin-bottom: 0;
-            width: 50%;
-         }
-         .container, section, aside {
-            border-radius: 6px;
-         }
-         section, aside {
-            background: #2db34a;
-            color: #fff;
-            margin: 1.858736059%;
-            padding: 20px 0;
-            text-align: left;
-         }
-         section {
-            float: left;
-            width: 63.197026%;
-         }
-         aside {
-            float: right;
-            width: 29.3680297%;
-         }
-        </style>
-    </head>
-    <body>
-    <h1>Programmer's Corner</h1>
-        <div class="container">
-            <section>
-            <h2>Programming Quotes</h2>
-            <ul>
-            <?php
-            $count = 0;
-            // display results based on json names 
-            foreach($list as $value){
-                
-            ?>
-                <li><?php echo $value['en'];?>
-                    <ul>
-                        <li><?php echo $value['author'];?></li>
-                    </ul>
-                </li>
+<style>
 
-            <?php
-                $count++;
-                if($count == 20) //limit output to 20
-                    break;
+    .content{
+        display: flex;
+        justify-content: center;
+    }
+    .wrap{
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+        width: 30rem;
+    }
+    .border{
+        border: 1px solid black;
+        max-width: 40rem;
+    }
+</style>
 
-            }
-            ?>
-            </ul>
-            </section>
-            <aside>
-            <h2>Joke of the Day</h2>
-            <?php echo $jokedata['joke'];?>
-            </aside>
-        </div>
-    </body>
-</html>
+<?php
+ $domOBJ = new DOMDocument();
+ $domOBJ->load("https://new-apptet.herokuapp.com/rss.php");//XML page URL
+ 
+ $content = $domOBJ->getElementsByTagName("pet");
+?>
+ <div class="content">
+ <h1>Basketball</h1>
+ </div>
+ <div class="content">
+
+ <div class="wrap">
+ <?php
+ foreach( $content as $data )
+ {?>
+     <div class="border">
+     <?php
+     $name = $data->getElementsByTagName("name")->item(0)->nodeValue;
+     $experience = $data->getElementsByTagName("experience")->item(0)->nodeValue;
+     $position = $data->getElementsByTagName("position")->item(0)->nodeValue;
+     echo "<ul><h2>$name - $experience</h2>
+              <ul>
+                  <li>Position: $position</li>
+              </ul>
+          </ul>";
+    ?>
+     </div>
+  <?php
+ }
+?>
+</div>
+</div>
