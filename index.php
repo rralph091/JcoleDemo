@@ -1,51 +1,27 @@
 
-<style>
-
-    .content{
-        display: flex;
-        justify-content: center;
-    }
-    .wrap{
-        display: flex;
-        flex-direction: column;
-        border: 1px solid black;
-        width: 30rem;
-    }
-    .border{
-        border: 1px solid black;
-        max-width: 40rem;
-    }
-</style>
-
 <?php
- $domOBJ = new DOMDocument();
- $domOBJ->load(" https://new-rralph.herokuapp.com/");//XML page URL
- 
- $content = $domOBJ->getElementsByTagName("player");
-?>
- <div class="content">
- <h1>Basketball</h1>
- </div>
- <div class="content">
+header("Content-type: text/xml");
 
- <div class="wrap">
- <?php
- foreach( $content as $data )
- {?>
-     <div class="border">
-     <?php
-     $Name = $data->getElementsByTagName("Name")->item(0)->nodeValue;
-     $Experience = $data->getElementsByTagName("Experience")->item(0)->nodeValue;
-     $Position = $data->getElementsByTagName("Position")->item(0)->nodeValue;
-     echo "<ul><h2>$Name - $Experience</h2>
-              <ul>
-                  <li>Position: $Position</li>
-              </ul>
-          </ul>";
-    ?>
-     </div>
-  <?php
- }
-?>
-</div>
-</div>
+$db_username = 'admin';
+$db_password = 'root1234';
+$db_hostname = 'dbrojasdev.cjw42bnplsor.us-east-1.rds.amazonaws.com';
+$db_port = '3306';
+$db_name = 'db_1822038';
+
+$conn = mysqli_connect($db_hostname, $db_username, $db_password, $db_name);
+$q = "SELECT * FROM NBA";
+$r = mysqli_query($conn, $q);
+
+echo "<?xml version='1.0' encoding='UTF-8'?>
+<data>";
+
+while ($item = mysqli_fetch_object($r)) {
+    echo "<item>
+    <top>$item->Top</top>
+    <name>$item->Name</name>
+    <score>$item->Score</score>
+    <team>$item->Team</team>
+    </item>";
+}
+
+echo "</data>";
