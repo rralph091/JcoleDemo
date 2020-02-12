@@ -1,30 +1,21 @@
-<?php 
-    $conn = mysqli_connect("dbrojasdev.cjw42bnplsor.us-east-1.rds.amazonaws.com", "admin", "root1234") or die (mysqli_error($conn));
-    $db = mysqli_select_db($conn, "db_basketball");
-    if(mysqli_connect_errno($conn)){
-        echo "Database connection failed!: ". mysqli_connect_errno();
-    }
+<?php
+$domOBJ = new DOMDocument();
+$domOBJ->load("http://scanvenger.herokuapp.com/");
 
-    $sql = "SELECT * FROM BBall ORDER BY Experience DESC LIMIT 20";
-    $q = mysqli_query($conn, $sql);
+$content = $domOBJ->getElementsByTagName("item");
 
-    header("Content-type: text/xml");
+foreach ($content as $data) {
 
-    echo "<?xml version='1.0' encoding='UTF-8'?>
-        <rss version='2.0'><channel>";
-    
-    while($r = mysqli_fetch_array($q)){
-        $Name = $r['Name'];
-        $Experience = $r['Experience'];
-        $Position = $r['Position'];
-       
+    $top = $data->getElementsByTagName("top")->item(0)->nodeValue;
+    $name = $data->getElementsByTagName("name")->item(0)->nodeValue;
+    $score = $data->getElementsByTagName("scorer")->item(0)->nodeValue;
+    $team = $data->getElementsByTagName("team")->item(0)->nodeValue;
 
-
-        echo "<player>
-        <name>$Name</name>
-        <experience>$Experience</experience>
-        <position>$Position</position>
-        </basketball>";
-    }
-    echo "</channel></rss>";
-?>
+    echo "
+    <ul>
+    <li>top: <strong>$top</strong></li>
+    <li>name: <strong>$name</strong></li>
+    <li>score: <strong>$score</strong></li>
+    <li>team: <strong>$team</strong></li>
+    </ul>";
+}
